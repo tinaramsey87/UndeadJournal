@@ -1,0 +1,50 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ */
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+ @import url(http://fonts.googleapis.com/css?family=Architects+Daughter|Coming+Soon);
+ @import url(http://fonts.googleapis.com/css?family=Architects+Daughter);
+
+ $post-font-stack: Architects Daughter, cursive;
+ $comment-font-stack: Coming Soon, cursive;
+
+ .post-body {
+   font: 150% $post-font-stack;
+   padding: 2em;
+ }
+
+ .post-header h3 {
+   font: 300% $post-font-stack;
+ }
+
+ .post-header h4 {
+   font: 200% $post-font-stack;
+ }
+
+ .post-comments ul {
+   list-style: none;
+ }
+
+ .post-comments h3 {
+   font: 175% $comment-font-stack;
+ }
+
+ .comment-details {
+   font: 100% $comment-font-stack;
+ }
+
+ .comment-content {
+   padding: 1em;
+   font: 100% $comment-font-stack;
+ }

@@ -7,11 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="col-md-8 col-md-offset-2">
+  <%= flash[:alert] %>
+  <%= flash[:notice] %>
 
-<%= flash[:alert] %>
-<%= flash[:notice] %>
-
-<%= yield %>
-
+  <%= yield %>
+</div>
 </body>
 </html>

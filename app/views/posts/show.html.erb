@@ -1,25 +1,39 @@
-<h3><%= @post.title %></h3>
-<h4>Written on: <%= @post.date %></h4>
+<div class="post-header">
+  <h3><%= @post.title %></h3>
+  <h4>Written on: <%= @post.created_at %></h4>
+</div>
 
-<p><%= @post.body %></p>
-<hr>
-<h3>Comments</h3>
-  <% if @comments.any? %>
-    <ul>
-      <% @comments.each do |comment| %>
-        <li>Posted by: <%= comment.name %> | At: <%= comment.when %>
-          <%= comment.content %> </li>
-      <% end %>
-    </ul>
-  <% else %>
-    <p>No comments on this post.</p>
-  <% end %>
+<div class="post-body">
+  <p><%= @post.body %></p>
+</div>
 
 <hr>
-<h4>Add a comment to this post:</h4>
 
-<%= render 'comments/form' %>
+<div class="post-comments">
+  <h3>Comments</h3>
+    <% if @post.comments.any? %>
+      <ul>
+        <% @post.comments.each do |comment| %>
+          <li><h7 class="comment-details">
+            Posted by: <%= comment.name %> |
+            At: <%= comment.created_at %> |
+            <%= link_to "Edit", edit_post_comment_path(@post, comment) %> |
+            <%= link_to "Delete", post_comment_path(@post, comment),
+          :data => {:confirm => "Are you sure? There is no way to undo this.", :method => "delete"} %></h7>
+            <div class="comment-content">
+              <%= comment.content %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No comments on this post.</p>
+    <% end %>
+</div>
 
+<hr>
+  <h4>Add a comment:</h4>
+  <%= render 'comments/form' %>
 <hr>
 <%= link_to 'Return to posts list', posts_path %> |
 
