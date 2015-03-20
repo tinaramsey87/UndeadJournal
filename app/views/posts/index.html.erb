@@ -1,0 +1,9 @@
+<h1>Undead Journal</h1>
+
+<% if @posts.any? %>
+  <% @posts.all.each do |post| %>
+    <%= post.title %>
+  <% end %>
+<% else %>
+  There aren't any posts on this blog yet.
+<% end %>
