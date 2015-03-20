@@ -33,7 +33,7 @@ describe "the destroy post process" do
     post = Post.create({ title: "Zombies", body: "They're what's for dinner."})
     visit post_path(post)
     click_on 'Delete this post'
-    :confirm 
+    :confirm
     expect(page).to have_content 'permanently'
   end
 end
