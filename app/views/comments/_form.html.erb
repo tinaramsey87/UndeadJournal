@@ -1,0 +1,14 @@
+<hr>
+<%= render "layouts/errors", :object => @comment %>
+
+<div class="form-group">
+  <%= form_for [@post, @comment] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :content %>
+  <%= f.text_area :content, cols: 50, rows: 17 %>
+
+  <%= f.submit :class => "btn btn-success" %>
+  <% end %>
+</div>

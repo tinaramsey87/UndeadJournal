@@ -4,11 +4,14 @@
   <%= form_for @post do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
-<br>
+
+  <%= f.label :date %>
+  <%= f.date_select :date %>
+
   <%= f.label :body %>
-  <br>
+
   <%= f.text_area :body, cols: 70, rows: 25 %>
-<br>
+
   <%= f.submit :class => "btn btn-success" %>
   <% end %>
 </div>

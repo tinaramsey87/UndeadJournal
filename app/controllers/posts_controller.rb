@@ -6,6 +6,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments.all
+    @comment = Comment.new
   end
 
   def new
@@ -39,13 +41,13 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    flash[:alert] = "This post has been permanantely destroyed"
+    flash[:alert] = "This post has been permanently destroyed"
     redirect_to posts_path
   end
 
   private
 
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :date, :body)
     end
 end

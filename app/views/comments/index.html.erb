@@ -1,0 +1,6 @@
+<ul>
+  <% @comments.each do |comment| %>
+    <li>Posted by: <%= comment.name %> | At: <%= comment.when %>
+      <%= comment.content %> </li>
+  <% end %>
+</ul>
