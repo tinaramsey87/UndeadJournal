@@ -35,9 +35,9 @@
   <h4>Add a comment:</h4>
   <%= render 'comments/form' %>
 <hr>
-<%= link_to 'Return to posts list', posts_path %> |
+<div class="btn btn-info"> <%= link_to 'Return to posts list', posts_path %> </div> |
 
-<%= link_to 'Edit this post', edit_post_path(@post) %> |
+<div class="btn btn-warning"> <%= link_to 'Edit this post', edit_post_path(@post) %> </div> |
 
-<%= link_to 'Delete this post', post_path(@post),
-:data => {:confirm => 'Are you sure? There is no way to undo this', :method => 'delete' } %>
+<div class="btn btn-danger"> <%= link_to 'Delete this post', post_path(@post),
+:data => {:confirm => 'Are you sure? There is no way to undo this', :method => 'delete' } %> </div>
