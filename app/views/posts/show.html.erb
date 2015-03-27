@@ -1,6 +1,6 @@
 <div class="post-header">
   <h3><%= @post.title %></h3>
-  <h4>Written on: <%= @post.created_at %></h4>
+  <h4>Written on: <%= @post.created_at %> By: <%= @user.username %> </h4>
 </div>
 
 <div class="post-body">
@@ -16,10 +16,13 @@
         <% @post.comments.each do |comment| %>
           <li><h7 class="comment-details">
             Posted by:  |
-            At: <%= comment.created_at %> |
+            At: <%= comment.created_at %>
+            <% if current_user.id == comment.user_id %>
+             |
             <%= link_to "Edit", edit_post_comment_path(@post, comment) %> |
             <%= link_to "Delete", post_comment_path(@post, comment),
           :data => {:confirm => "Are you sure? There is no way to undo this.", :method => "delete"} %></h7>
+          <% end %>
             <div class="comment-content">
               <%= comment.content %>
             </div>
@@ -35,9 +38,14 @@
   <h4>Add a comment:</h4>
   <%= render 'comments/form' %>
 <hr>
-<div class="btn btn-info"> <%= link_to 'Return to posts list', posts_path %> </div> |
+<div class="post-buttons">
+  <div class="btn btn-info"> <%= link_to 'Return to posts list', posts_path %> </div>
 
-<div class="btn btn-warning"> <%= link_to 'Edit this post', edit_post_path(@post) %> </div> |
+  <% if current_user.id == @post.user_id %>
+    |  <div class="btn btn-warning"> <%= link_to 'Edit this post', edit_post_path(@post) %> </div> |
 
-<div class="btn btn-danger"> <%= link_to 'Delete this post', post_path(@post),
-:data => {:confirm => 'Are you sure? There is no way to undo this', :method => 'delete' } %> </div>
+    <div class="btn btn-danger"> <%= link_to 'Delete this post', post_path(@post),
+    :data => {:confirm => 'Are you sure? There is no way to undo this', :method => 'delete' } %> </div>
+
+  <% end %>
+</div>

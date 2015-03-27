@@ -1,4 +1,4 @@
-<h1>Undead Journal</h1>
+<h2>Posts Archive</h2>
 
 <% if @posts.any? %>
   <ul>
@@ -7,13 +7,15 @@
     <% end %>
   </ul>
 <% else %>
-
-  There aren't any posts on this blog yet.
-  Do you want to <%= link_to 'add one?', new_post_path %>
-
+  <% if current_user %>
+    There aren't any posts on this blog yet.
+    Do you want to <%= link_to 'add one?', new_post_path %>
+  <% end %>
 <% end %>
 
-<% if @posts.any? %>
+<% if current_user && @posts.any? %>
   <hr>
   <%= link_to 'Add a new post', new_post_path %>
+<% else %>
+   <p>Please sign in or create an account to add new posts</p>
 <% end %>
