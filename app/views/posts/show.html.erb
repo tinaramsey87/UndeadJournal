@@ -15,7 +15,7 @@
       <ul>
         <% @post.comments.each do |comment| %>
           <li><h7 class="comment-details">
-            Posted by: <%= comment.name %> |
+            Posted by:  |
             At: <%= comment.created_at %> |
             <%= link_to "Edit", edit_post_comment_path(@post, comment) %> |
             <%= link_to "Delete", post_comment_path(@post, comment),

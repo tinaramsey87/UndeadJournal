@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   validates :username, presence: true
   validates :username, uniqueness: true
 
-
+  has_many :comments
+  has_many :posts
 
   def encrypt_password
     self.password_salt = BCrypt::Engine.generate_salt
