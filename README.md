@@ -1,4 +1,9 @@
-# README
+# UndeadJournal
+
+This is a simple journal app where users can write posts and comment on each other's posts.
+
+## Set-up
+
 Requires Ruby 2.2.0, Postgres, and ActiveRecord
 
 To start using Undead Journal, first clone this git repository.
