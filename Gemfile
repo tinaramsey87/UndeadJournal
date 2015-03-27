@@ -8,6 +8,7 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bootstrap-sass'
+gem 'bcrypt-ruby', '~> 3.1.5', require: "bcrypt"
 
 group :development do
   gem 'byebug'
@@ -24,4 +25,5 @@ group :test do
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'pry'
+  gem 'factory_girl_rails'
 end
