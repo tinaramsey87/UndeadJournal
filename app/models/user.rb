@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
 
   validates :username, presence: true
-  validates :username, uniqueness: true
+  # validates :username, uniqueness: true
 
   has_many :comments
   has_many :posts

@@ -1,27 +1,30 @@
 require 'rails_helper'
 
-describe "the add comment process" do
+describe "the add comment process", js: true do
   it "adds a new comment to a post" do
     user = FactoryGirl.create(:user)
     sign_in(user)
     post = FactoryGirl.create(:post, user: user)
     visit post_path(post)
-    fill_in 'Content', :with => "Mmmm...brains."
+    click_on "Add Comment"
+    fill_in 'Content', :with => "test comment"
     click_on 'Create Comment'
-    expect(page).to have_content 'successfully'
+    save_screenshot('screenshot.png')
+    expect(page).to have_content 'test comment'
   end
 
   it "gives an error when a field is not filled in" do
     user = FactoryGirl.create(:user)
     sign_in(user)
     post = FactoryGirl.create(:post, user: user)
-    visit new_post_comment_path(post)
-    click_on 'Create Comment'
-    expect(page).to have_content 'errors'
+    visit post_path(post)
+    click_on "Add Comment"
+    click_on "Create Comment"
+    expect(page).to have_content 'blank'
   end
 end
 
-describe "the edit comment process" do
+describe "the edit comment process", js: true do
   it "edits a comment" do
     user = FactoryGirl.create(:user)
     sign_in(user)
@@ -30,11 +33,11 @@ describe "the edit comment process" do
     visit post_path(post)
     click_on 'Edit'
     click_on 'Update Comment'
-    expect(page).to have_content 'successfully'
+    expect(page).to have_content 'Test Content'
   end
 end
 
-describe "the destroy comment process" do
+describe "the destroy comment process", js: true do
   it "permanentely deletes a comment" do
     user = FactoryGirl.create(:user)
     sign_in(user)
@@ -43,6 +46,6 @@ describe "the destroy comment process" do
     visit post_path(post)
     click_on 'Delete'
     :confirm
-    expect(page).to have_content 'permanently'
+    expect(page).not_to have_content 'Test Content'
   end
 end

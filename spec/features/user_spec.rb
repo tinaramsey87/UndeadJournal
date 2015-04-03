@@ -17,7 +17,7 @@ describe 'the log in a user process' do
     FactoryGirl.create(:user)
     visit root_path
     click_on "Log In"
-    fill_in "Username", with: "Test"
+    fill_in "Username", with: "FactoryGirl"
     fill_in "Password", with: "1234"
     click_on "Log in"
     expect(page).to have_content 'successfully'
