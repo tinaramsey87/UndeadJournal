@@ -1,11 +1,11 @@
-<li><h7 class="comment-details">
+<li id="comment_<%= comment.id %>"><h7 class="comment-details">
   Posted by:  |
   At: <%= comment.created_at %>
   <% if current_user.id == comment.user_id %>
    |
-  <%= link_to "Edit", edit_post_comment_path(@post, comment) %> |
+  <%= link_to "Edit", edit_post_comment_path(@post, comment, { method: :patch }), id: "edit_comment", remote: true %> |
   <%= link_to "Delete", post_comment_path(@post, comment),
-:data => {:confirm => "Are you sure? There is no way to undo this.", :method => "delete"} %></h7>
+:data => {:confirm => "Are you sure? There is no way to undo this.", method: :delete, remote: true } %></h7>
 <% end %>
   <div class="comment-content">
     <%= comment.content %>

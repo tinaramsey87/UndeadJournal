@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
           flash[:alert] = "There were some errors..."
           render :new
         end
-        format.js { flash.now[:alert] = render_to_string :partial => 'layouts/errors' }
+        format.js { flash.now[:alert] = "Comments can't be blank." }
       end
     end
   end
@@ -36,20 +36,35 @@ class CommentsController < ApplicationController
   def update
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
-      if @comment.update(comment_params)
-        flash[:notice] = "Comment successfully updated"
-        redirect_to post_path(@post)
-      else
-        render :edit
+    if @comment.update(comment_params)
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Comment successfully updated"
+          redirect_to post_path(@post)
+        end
+        format.js { flash.now[:notice] = "Comment updated." }
       end
+    else
+      respond_to do |format|
+        format.html do
+          flash[:alert] = "There were some errors..."
+          render :edit
+        end
+        format.js { flash.now[:alert] = "An error occured. Please try again." }
+      end
+    end
   end
 
   def destroy
     @post = Post.find(params[:post_id])
-    @comment = Comment.find(params[:id])
-    @comment.destroy
-    flash[:alert] = "Comment permanently deleted"
-    redirect_to post_path(@post)
+    @comment = Comment.destroy(params[:id])
+    respond_to do |format|
+      format.html do
+        flash[:alert] = "Comment permanently deleted"
+        redirect_to post_path(@post)
+      end
+      format.js { flash.now[:alert] = "Comment permanently deleted" }
+    end
   end
 
   private

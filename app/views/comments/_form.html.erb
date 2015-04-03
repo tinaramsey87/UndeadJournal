@@ -1,4 +1,4 @@
-<%= render "layouts/errors", :object => @comment %>
+<%= render "layouts/errors", :object => @comment, remote: true %>
 
 <%= form_for [@post, @comment], remote: true do |f| %>
   <div class="form-group">
