@@ -1,0 +1,13 @@
+<li><h7 class="comment-details">
+  Posted by:  |
+  At: <%= comment.created_at %>
+  <% if current_user.id == comment.user_id %>
+   |
+  <%= link_to "Edit", edit_post_comment_path(@post, comment) %> |
+  <%= link_to "Delete", post_comment_path(@post, comment),
+:data => {:confirm => "Are you sure? There is no way to undo this.", :method => "delete"} %></h7>
+<% end %>
+  <div class="comment-content">
+    <%= comment.content %>
+  </div>
+</li>

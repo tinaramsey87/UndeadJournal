@@ -1,0 +1,12 @@
+<% if @comment.save %>
+  $('#new_comment').remove();
+  $('#add_comment').show();
+  $('#flashes').fadeIn(1000);
+  $('#flashes').html('<%= j flash[:notice] %>');
+  $('#flashes').fadeOut(1000);
+  $('#comments').prepend('<%= j render(@comment) %>');
+<% else %>
+  $('#flashes').fadeIn(1000);
+  $('#flashes').html('<%= j flash[:alert] %>');
+  $('#flashes').fadeOut(slow);
+<% end %>

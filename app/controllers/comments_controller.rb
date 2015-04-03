@@ -9,12 +9,23 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = current_user.comments.new(comment_params)
     @comment.post_id = params[:post_id]
-      if @comment.save
-        flash[:notice] = "Comment successfully added"
-        redirect_to post_path(@post)
-      else
-        render :new
+    if @comment.save
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Comment successfully added"
+          redirect_to post_path(@post)
+        end
+        format.js { flash.now[:notice] = "Your comment was added." }
       end
+    else
+      respond_to do |format|
+        format.html do
+          flash[:alert] = "There were some errors..."
+          render :new
+        end
+        format.js { flash.now[:alert] = render_to_string :partial => 'layouts/errors' }
+      end
+    end
   end
 
   def edit
