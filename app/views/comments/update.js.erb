@@ -4,4 +4,4 @@ $('#comment_<%= @comment.id %>').remove();
 $('#comments').prepend('<%= j render(@comment) %>');
 $('#flashes').fadeIn(1000);
 $('#flashes').html('<%= j flash[:notice] %>');
-$('#flashes').fadeOut(1000);
+$('#flashes').fadeOut(7000);

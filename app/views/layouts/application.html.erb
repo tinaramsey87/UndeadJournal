@@ -19,12 +19,12 @@
   </div>
 <hr>
   <div class="col-md-8 col-md-offset-2">
-    <div id="flashes">
+
+    <%= yield %>
+    <div class="alert" id="flashes">
       <%= flash[:alert] %>
       <%= flash[:notice] %>
     </div>
-
-    <%= yield %>
   </div>
 </body>
 </html>

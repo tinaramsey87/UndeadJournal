@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   before_save :encrypt_password
 
+  validates :phone, presence: true
   validates :username, presence: true
-  # validates :username, uniqueness: true
 
   has_many :comments
   has_many :posts

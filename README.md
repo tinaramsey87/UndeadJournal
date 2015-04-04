@@ -16,6 +16,11 @@ Or, use this link to reach the live Heroku deployment:
 
 https://quiet-lake-9545.herokuapp.com
 
+## Issues
+
+-Adding comment spec fails; not sure why.
+-I'm not saving sent messages so I haven't written model tests for messages. 
+
 ## Author
 
 Tina Ramsey

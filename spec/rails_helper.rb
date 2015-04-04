@@ -50,11 +50,4 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
- #  VCR.configure do |c|
- #   c.cassette_library_dir = 'spec/cassettes'
- #   c.hook_into :webmock
- #   c.configure_rspec_metadata!
- #   c.filter_sensitive_data('<twilio account sid>') { ENV['TWILIO_ACCOUNT_SID'] }
- #   c.filter_sensitive_data('<twilio auth token>') { ENV['TWILIO_AUTH_TOKEN'] }
- # end
 end

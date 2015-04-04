@@ -9,8 +9,18 @@ describe "the add comment process", js: true do
     click_on "Add Comment"
     fill_in 'Content', :with => "test comment"
     click_on 'Create Comment'
-    save_screenshot('screenshot.png')
     expect(page).to have_content 'test comment'
+  end
+
+  it "sends a message to the post author when a comment is added" do
+    user = FactoryGirl.create(:user)
+    sign_in(user)
+    post = FactoryGirl.create(:post, user: user)
+    visit post_path(post)
+    click_on "Add Comment"
+    fill_in "Content", :with => "test comment"
+    click_on 'Create Comment'
+    expect(page).to have_content 'SMS'
   end
 
   it "gives an error when a field is not filled in" do

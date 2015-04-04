@@ -7,15 +7,18 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
+    @user = User.find(@post.user_id)
     @comment = @post.comments.new(comment_params)
-    @comment.post_id = params[:post_id]
+    @comment.user_id = current_user.id
     if @comment.save
+      message = Message.new(body: "Someone has commented on your post", to: @user.phone, from: ENV['TWILIO_NUMBER'])
+      message.send_message
       respond_to do |format|
         format.html do
-          flash[:notice] = "Comment successfully added"
+          flash[:notice] = "Comment successfully added. Post author notified by SMS."
           redirect_to post_path(@post)
         end
-        format.js { flash.now[:notice] = "Your comment was added." }
+        format.js { flash.now[:notice] = "Your comment was added. Post author notified by SMS." }
       end
     else
       respond_to do |format|
@@ -68,8 +71,8 @@ class CommentsController < ApplicationController
   end
 
   private
-
     def comment_params
       params.require(:comment).permit(:content)
     end
+
 end

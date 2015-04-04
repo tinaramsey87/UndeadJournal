@@ -1,9 +1,13 @@
 <h3>Create a new user account</h3>
+<p>Tip: You can now enter a phone number to get an SMS alert when someone comments on your post.</p>
 
 <%= form_for @user do |f| %>
 
 <%= f.label :username %>
 <%= f.text_field :username %>
+
+<%= f.label :phone %>
+<%= f.text_field :phone %>
 
 <%= f.label :password %>
 <%= f.password_field :password %>

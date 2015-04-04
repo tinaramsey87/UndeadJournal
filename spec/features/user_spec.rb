@@ -5,6 +5,7 @@ describe 'the sign up a user process' do
     visit root_path
     click_on 'Sign Up'
     fill_in 'Username', with: "Test"
+    fill_in 'Phone', with: "5031234567"
     fill_in 'Password', with: "1234"
     fill_in 'Password confirmation', with: "1234"
     click_on 'Create Account'
